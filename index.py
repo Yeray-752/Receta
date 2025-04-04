@@ -28,3 +28,30 @@ while True:
     
     opcion = input("\nElige una opción (1-6): ")
     
+    if opcion == "5":  # Eliminar categoría
+        print("\nCategorías disponibles:")
+        categorias = [c.name for c in ruta_base.iterdir() if c.is_dir()]
+        for i, cat in enumerate(categorias, 1):
+            print(f"{i}. {cat}")
+        
+        try:
+            cat_idx = int(input("\nElige categoría a eliminar (número): ")) - 1
+            categoria = categorias[cat_idx]
+            ruta_cat = ruta_base / categoria
+            
+            if len(list(ruta_cat.glob('*'))) == 0:
+                ruta_cat.rmdir()
+                print("\n¡Categoría eliminada con éxito!")
+            else:
+                print("\n¡La categoría no está vacía!")
+        
+        except:
+            print("\n¡Error al eliminar categoría!")
+    elif opcion == "6":  # Salir
+        print("\n¡Hasta pronto!")
+        break
+    
+    else:
+        print("\nOpción no válida")
+    
+    input("\nPresiona Enter para continuar...")
