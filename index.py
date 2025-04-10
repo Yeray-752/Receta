@@ -4,8 +4,9 @@ from pathlib import Path
 import shutil
 
 # Ruta base donde ya existen las recetas
-ruta_base = Path('C:\\Users\\chago\\Desktop\\Clases\\sistemas informaticos\\Phyton\\Recetas (1)\\Recetas')
+ruta_base = Path('C:)\\Recetas')
 
+# WARNING Para que el codigo funcione perfectamente deberias extraer el ZIP en el dico C:, para que la ruta sea la misma.
 
 # Función para contar recetas
 def contar_recetas():
@@ -17,7 +18,7 @@ def contar_recetas():
 
 def MostrarCategoria():
     print('Categorias: \n')
-    contenido = os.listdir('C:\\Users\\chago\\Desktop\\Clases\\sistemas informaticos\\Phyton\\Recetas (1)\\Recetas\\')
+    contenido = os.listdir('C:\\Recetas\\')
 
     for elemento in contenido:
         print(elemento)
@@ -54,7 +55,7 @@ while True:
 
         system('cls')
 
-        contenido2 = os.listdir('C:\\Users\\chago\\Desktop\\Clases\\sistemas informaticos\\Phyton\\Recetas (1)\\Recetas\\' + categoria)
+        contenido2 = os.listdir('C:\\Recetas\\' + categoria)
         print(f"Contenido de '{categoria}':\n")
         for elemento in contenido2:
             print(elemento)
@@ -63,7 +64,7 @@ while True:
 
         system('cls')
 
-        archivo = open('C:\\Users\\chago\\Desktop\\Clases\\sistemas informaticos\\Phyton\\Recetas (1)\\Recetas\\' + categoria +'\\' + Leer)
+        archivo = open('C:\\Recetas\\' + categoria +'\\' + Leer)
 
         print(archivo.read() + '\n')
 
@@ -81,7 +82,7 @@ while True:
 
         system('cls')
 
-        contenido2 = os.listdir('C:\\Users\\chago\\Desktop\\Clases\\sistemas informaticos\\Phyton\\Recetas (1)\\Recetas\\' + categoria)
+        contenido2 = os.listdir('C:\\Recetas\\' + categoria)
         print(f"Contenido de '{categoria}':\n")
         for elemento in contenido2:
             print(elemento)
@@ -92,7 +93,7 @@ while True:
 
         system('cls')
 
-        ruta2 = 'C:\\Users\\chago\\Desktop\\Clases\\sistemas informaticos\\Phyton\\Recetas (1)\\Recetas\\' + categoria + '\\' + Crear
+        ruta2 = 'C:\\Recetas\\' + categoria + '\\' + Crear
         with open(ruta2, "w") as archivo:
          texto = input('Escriba la Receta...: ')
          archivo.write(texto)
@@ -100,34 +101,34 @@ while True:
     elif opcion == '3':
 
         NombreCategoria = input('\n Dime el nombre de la Categorias que quieres  crear: ')
-        os.mkdir('C:\\Users\\chago\\Desktop\\Clases\\sistemas informaticos\\Phyton\\Recetas (1)\\Recetas\\' + NombreCategoria)
+        os.mkdir('C:\\Recetas\\' + NombreCategoria)
         print('Se ha creado la carpeta')
 
     elif opcion == '4':
         
         categoria = MostrarCategoria()
 
-        contenido = os.listdir('C:\\Users\\chago\\Desktop\\Clases\\sistemas informaticos\\Phyton\\Recetas (1)\\Recetas\\' + categoria)
+        contenido = os.listdir('C:\\Recetas\\' + categoria)
         
         print(f"Contenido de '{categoria}':")
         for elemento in contenido:
             print(elemento)
 
         RecetaEliminar = input('Ahora que recetas es la que quieres eliminar?: ')
-        os.remove('C:\\Users\\chago\\Desktop\\Clases\\sistemas informaticos\\Phyton\\Recetas (1)\\Recetas\\' + categoria +'\\' + RecetaEliminar)
+        os.remove('C:\\Recetas\\' + categoria +'\\' + RecetaEliminar)
 
     elif opcion == '5':
 
         categoria = MostrarCategoria()
 
-        contenido = os.listdir('C:\\Users\\chago\\Desktop\\Clases\\sistemas informaticos\\Phyton\\Recetas (1)\\Recetas\\' + categoria)
+        contenido = os.listdir('C:\\Recetas\\' + categoria)
         
         print(f"Contenido de '{categoria}':")
         for elemento in contenido:
             print(elemento)
 
         
-        shutil.rmtree('C:\\Users\\chago\\Desktop\\Clases\\sistemas informaticos\\Phyton\\Recetas (1)\\Recetas\\' + categoria)
+        shutil.rmtree('C:\\Recetas\\' + categoria)
 
     elif opcion == '6':
         break
