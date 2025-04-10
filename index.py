@@ -4,7 +4,7 @@ from pathlib import Path
 import shutil
 
 # Ruta base donde ya existen las recetas
-ruta_base = Path('C:)\\Recetas')
+ruta_base = Path('C:\\Recetas')
 
 # WARNING Para que el codigo funcione perfectamente deberias extraer el ZIP en el dico C:, para que la ruta sea la misma.
 
