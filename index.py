@@ -1,8 +1,11 @@
-import os
+import os 
+from os import system
 from pathlib import Path
+import shutil
 
 # Ruta base donde ya existen las recetas
-ruta_base = Path('D:\\ssf\\Recetas')
+ruta_base = Path('C:\\Users\\chago\\Desktop\\Clases\\sistemas informaticos\\Phyton\\Recetas (1)\\Recetas')
+
 
 # Función para contar recetas
 def contar_recetas():
@@ -12,8 +15,23 @@ def contar_recetas():
             total += len(list(categoria.glob('*.txt')))
     return total
 
+def MostrarCategoria():
+    print('Categorias: \n')
+    contenido = os.listdir('C:\\Users\\chago\\Desktop\\Clases\\sistemas informaticos\\Phyton\\Recetas (1)\\Recetas\\')
+
+    for elemento in contenido:
+        print(elemento)
+
+    Categoria = input ('Elige la Categoria que quieres leer: ')
+
+    system('cls')
+    return Categoria
+
+        
+
 # Menú principal
 while True:
+    system('cls')
     print("\n=== RECETARIO ===")
     print(f"Ubicación: {ruta_base}")
     print(f"Total recetas: {contar_recetas()}")
@@ -27,31 +45,92 @@ while True:
     print("6. Salir")
     
     opcion = input("\nElige una opción (1-6): ")
-    
-    if opcion == "5":  # Eliminar categoría
-        print("\nCategorías disponibles:")
-        categorias = [c.name for c in ruta_base.iterdir() if c.is_dir()]
-        for i, cat in enumerate(categorias, 1):
-            print(f"{i}. {cat}")
+
+    system('cls')
+
+    if opcion == '1':
         
-        try:
-            cat_idx = int(input("\nElige categoría a eliminar (número): ")) - 1
-            categoria = categorias[cat_idx]
-            ruta_cat = ruta_base / categoria
+        categoria = MostrarCategoria()
+
+        system('cls')
+
+        contenido2 = os.listdir('C:\\Users\\chago\\Desktop\\Clases\\sistemas informaticos\\Phyton\\Recetas (1)\\Recetas\\' + categoria)
+        print(f"Contenido de '{categoria}':\n")
+        for elemento in contenido2:
+            print(elemento)
+
+        Leer = input('\nCopie el nombre del archivo que quiere abrir: ')
+
+        system('cls')
+
+        archivo = open('C:\\Users\\chago\\Desktop\\Clases\\sistemas informaticos\\Phyton\\Recetas (1)\\Recetas\\' + categoria +'\\' + Leer)
+
+        print(archivo.read() + '\n')
+
+        salir = input('Pulse 6 para salir: ')
+
+        if salir == 6:
             
-            if len(list(ruta_cat.glob('*'))) == 0:
-                ruta_cat.rmdir()
-                print("\n¡Categoría eliminada con éxito!")
-            else:
-                print("\n¡La categoría no está vacía!")
+            break
+
+    
+
+    elif opcion == '2':
+
+        categoria =  MostrarCategoria()
+
+        system('cls')
+
+        contenido2 = os.listdir('C:\\Users\\chago\\Desktop\\Clases\\sistemas informaticos\\Phyton\\Recetas (1)\\Recetas\\' + categoria)
+        print(f"Contenido de '{categoria}':\n")
+        for elemento in contenido2:
+            print(elemento)
+
+
+
+        Crear = input('\nIndique el nombre del archivo que quiere crear: ')
+
+        system('cls')
+
+        ruta2 = 'C:\\Users\\chago\\Desktop\\Clases\\sistemas informaticos\\Phyton\\Recetas (1)\\Recetas\\' + categoria + '\\' + Crear
+        with open(ruta2, "w") as archivo:
+         texto = input('Escriba la Receta...: ')
+         archivo.write(texto)
+
+    elif opcion == '3':
+
+        NombreCategoria = input('\n Dime el nombre de la Categorias que quieres  crear: ')
+        os.mkdir('C:\\Users\\chago\\Desktop\\Clases\\sistemas informaticos\\Phyton\\Recetas (1)\\Recetas\\' + NombreCategoria)
+        print('Se ha creado la carpeta')
+
+    elif opcion == '4':
         
-        except:
-            print("\n¡Error al eliminar categoría!")
-    elif opcion == "6":  # Salir
-        print("\n¡Hasta pronto!")
+        categoria = MostrarCategoria()
+
+        contenido = os.listdir('C:\\Users\\chago\\Desktop\\Clases\\sistemas informaticos\\Phyton\\Recetas (1)\\Recetas\\' + categoria)
+        
+        print(f"Contenido de '{categoria}':")
+        for elemento in contenido:
+            print(elemento)
+
+        RecetaEliminar = input('Ahora que recetas es la que quieres eliminar?: ')
+        os.remove('C:\\Users\\chago\\Desktop\\Clases\\sistemas informaticos\\Phyton\\Recetas (1)\\Recetas\\' + categoria +'\\' + RecetaEliminar)
+
+    elif opcion == '5':
+
+        categoria = MostrarCategoria()
+
+        contenido = os.listdir('C:\\Users\\chago\\Desktop\\Clases\\sistemas informaticos\\Phyton\\Recetas (1)\\Recetas\\' + categoria)
+        
+        print(f"Contenido de '{categoria}':")
+        for elemento in contenido:
+            print(elemento)
+
+        
+        shutil.rmtree('C:\\Users\\chago\\Desktop\\Clases\\sistemas informaticos\\Phyton\\Recetas (1)\\Recetas\\' + categoria)
+
+    elif opcion == '6':
         break
-    
+
     else:
-        print("\nOpción no válida")
-    
-    input("\nPresiona Enter para continuar...")
+        print('Numero no valido')
